@@ -4,6 +4,6 @@ pipeline
  stage('checkout') 
 	steps
 	{
-	git checkout https://github.com/esmy1990/my-app.git
+	git 'https://github.com/esmy1990/my-app'
 	}
 }
