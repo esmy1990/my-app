@@ -25,7 +25,7 @@ pipeline
 	stage ("docker build")
 	{
 		steps{
-			sh "docker build -t esmy1990/my-app:1.0.0"
+			sh "docker build -t esmy1990/my-app:1.0.0 ."
 		}
 	}
 }
