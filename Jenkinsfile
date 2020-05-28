@@ -1,7 +1,6 @@
 pipeline
 {
  agent any
-def app
 	environment {
   	def mvnhome = tool name: 'maven 3.6.3', type: 'maven'
 	def mvncmd = "${mvnhome}/bin/mvn"
@@ -26,7 +25,7 @@ def app
 	stage ("docker build")
 	{
 		steps{
-			app = docker.build("esmy1990/my-app")
+			sh "docker build -t esmy1990/my-app:1.0.0"
 		}
 	}
 }
