@@ -4,7 +4,7 @@ pipeline
 environment {
   	def mvnhome = tool name: 'maven 3.6.3', type: 'maven'
 	def mvncmd = "${mvnhome}/bin/mvn"
-	
+	withTool(toolname) {docker}
 }
  stages
 {
