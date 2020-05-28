@@ -22,7 +22,9 @@ environment {
 			sh  "${mvncmd} clean package"
 		}
 	}
-	
-	
+	stage ('docker build')
+	{
+	sh "build -t esmy1990/my-app:1.0.0 .'
+	}
 }
 }
