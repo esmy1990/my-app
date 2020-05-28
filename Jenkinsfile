@@ -1,6 +1,10 @@
 pipeline
 {
  agent any
+environment {
+  	def mvnhome = tool name: 'Maven 3.6.3', type: 'maven'
+	def mvncmd = "${mvnhome}/bin/mvn
+}
  stages
 {
 	stage("checkout") 
@@ -14,7 +18,7 @@ pipeline
 	{
 		steps
 		{
-		sh  "mvn clean package"
+			sh  "${mvncmd} clean package"
 		}
 	}
 }
