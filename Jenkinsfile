@@ -1,14 +1,21 @@
 pipeline
 {
-agent any
-stages
+ agent any
+ stages
 {
- stage("checkout") 
- {
-   steps
+	stage("checkout") 
 	{
-	git 'https://github.com/esmy1990/my-app'
+		steps
+		{
+		git 'https://github.com/esmy1990/my-app'
+		}
 	}
-}
+	stage("maven build")
+	{
+		steps
+		{
+		sh  "mvn clean package"
+		}
+	}
 }
 }
