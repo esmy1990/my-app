@@ -26,7 +26,7 @@ def app
 	stage ("docker build")
 	{
 		steps{
-			app = docker.build("esmy1990/my-app:1.0.0")
+			app = docker.build("esmy1990/my-app")
 		}
 	}
 }
