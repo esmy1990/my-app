@@ -1,10 +1,11 @@
 pipeline
 {
  agent any
-environment {
+def app
+	environment {
   	def mvnhome = tool name: 'maven 3.6.3', type: 'maven'
 	def mvncmd = "${mvnhome}/bin/mvn"
-	def app
+	
 }
  stages
 {
