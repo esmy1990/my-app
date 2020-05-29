@@ -42,6 +42,15 @@ pipeline
 			sh "docker  push esmy1990/my-app:1.0.0"
 		}
 	}
+	stage ("docker deployment")
+	{
+		steps{
+			def dockerrun = sh "docker run -itd -p 8080:8080 -d -name my-app esmy1990/my-app:1.0.0"
+			sshagent(['dev-server']) {
+				sh "ssh -o StrictHostKeyChecking=no root@192.168.0.17 ${dockerrun}"
+				}
+		}
+	}
 	
 }
 }
