@@ -34,8 +34,10 @@ pipeline
 		steps
 		{
 			withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerpwd')]) 
+			{
 		
 			sh "docker login -u esmy1990 -p ${dockerpwd}"
+			}
 		
 			sh "docker  push esmy1990/my-app:1.0.0"
 		}
