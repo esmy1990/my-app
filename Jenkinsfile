@@ -4,7 +4,7 @@ pipeline
 	environment {
   	def mvnhome = tool name: 'maven 3.6.3', type: 'maven'
 	def mvncmd = "${mvnhome}/bin/mvn"
-	def dockerrun = sh "docker run -itd -p 8080:8080 -d -name my-app esmy1990/my-app:1.0.0"
+	def dockerrun = sh "docker run -itd -p 8080:8080 -d -n my-app esmy1990/my-app:1.0.0"
 	
 }
  stages
