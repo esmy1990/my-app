@@ -43,7 +43,14 @@ pipeline
 			sh "docker  push esmy1990/my-app:2.0.0"
 		}
 	}
-	
+	stage ("sonar")
+	{
+		steps{
+		withSonarQubeEnv("sonar")
+			{
+				sh "${mvncmd} clean package sonar:sonar"
+			}
+		}}
 	
 }
 }
