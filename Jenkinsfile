@@ -43,6 +43,11 @@ pipeline
 			sh "docker  push esmy1990/my-app:2.0.0"
 		}
 	}
+	stage("email")
+	{
+		steps{
+		mail bcc: '', body: 'test', cc: '', from: '', replyTo: '', subject: 'test', to: 'petermeghna@gmail.com'
+		}}
 	
 	
 }
