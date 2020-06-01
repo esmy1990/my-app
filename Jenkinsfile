@@ -54,7 +54,8 @@ pipeline
 	}
 	
 	stage('checkmarx') {
-		step{[$class: 'CxScanBuilder', comment: '', credentialsId: '', excludeFolders: '', excludeOpenSourceFolders: '', exclusionsSetting: 'global', failBuildOnNewResults: false, failBuildOnNewSeverity: 'HIGH', filterPattern: 'tar,war,\\sh', fullScanCycle: 10, includeOpenSourceFolders: '', osaArchiveIncludePatterns: '*.zip, *.war, *.ear, *.tgz', osaInstallBeforeScan: false, password: '{AQAAABAAAAAQRQcgHF9rkZ+agmUI7wSfx4aUhMxRurOUfR0o0pzIsYU=}', projectName: 'pipeline', sastEnabled: true, serverUrl: '', sourceEncoding: 'Provide Checkmarx server credentials to see source encodings list', username: '', vulnerabilityThresholdResult: 'FAILURE', waitForResultsEnabled: true]}
+		steps{
+			([$class: 'CxScanBuilder', comment: '', credentialsId: '', excludeFolders: '', excludeOpenSourceFolders: '', exclusionsSetting: 'global', failBuildOnNewResults: false, failBuildOnNewSeverity: 'HIGH', filterPattern: 'tar,war,\\sh', fullScanCycle: 10, includeOpenSourceFolders: '', osaArchiveIncludePatterns: '*.zip, *.war, *.ear, *.tgz', osaInstallBeforeScan: false, password: '{AQAAABAAAAAQGD9uya+LhOPmdsCY+U/BaMFm6Qr9Qnr1atvcNweWOUw=}', projectName: 'pipeline', sastEnabled: false, serverUrl: '', sourceEncoding: 'Provide Checkmarx server credentials to see source encodings list', username: '', vulnerabilityThresholdResult: 'FAILURE', waitForResultsEnabled: true])
 	}}	
 }
 }
