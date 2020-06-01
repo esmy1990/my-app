@@ -26,7 +26,7 @@ pipeline
 	stage ("docker build")
 	{
 		steps{
-			sh "docker build -t esmy1990/my-app:1.0.0 ."
+			sh "docker build -t esmy1990/my-app:2.0.0 ."
 		}
 	}
 	stage ("docker push")
@@ -40,7 +40,7 @@ pipeline
 			sh "docker login -u esmy1990 -p ${dockerpwd}"
 			}
 		
-			sh "docker  push esmy1990/my-app:1.0.0"
+			sh "docker  push esmy1990/my-app:2.0.0"
 		}
 	}
 	
