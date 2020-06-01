@@ -91,6 +91,6 @@ pipeline
       mediumThreshold: 1,
       generatePdfReport: false])
   }
-	
+	}	
 }
 }
