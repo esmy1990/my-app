@@ -22,8 +22,7 @@ pipeline
 			sh  "${mvncmd} clean package"
 		}
 	}
-	},
-	parallel task2: {
+	}, task2: {
 	stage ("sonar")
 	{
 		steps{
