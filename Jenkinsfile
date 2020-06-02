@@ -15,9 +15,7 @@ pipeline
 		}
 	}
 	
-	stage("tests"){
-	parallel {
-	
+		
        stage("maven build")
 	{
 		steps
@@ -26,7 +24,9 @@ pipeline
 		}
 	}
     
-        stage ("sonar")
+	stage("tests"){
+		parallel {
+			stage ("sonar")
 	{
 		steps{
 		withSonarQubeEnv("sonar")
@@ -35,15 +35,15 @@ pipeline
 			}
 		}
 	}
-    }
-   	   }
+   
 
 	stage ("docker build")
 	{
 		steps{
-			sh "docker build -t esmy1990/my-app:2.0.0 ."
+			sh "docker build -t esmy1990/my-app:3.0.0 ."
 		}
 	}
+		}}
 	stage ("docker push")
 	{
 		
