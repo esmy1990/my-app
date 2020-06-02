@@ -14,16 +14,18 @@ pipeline
 		git 'https://github.com/esmy1990/my-app'
 		}
 	}
-	parallel task1: {
-		stages{
-	stage("maven build")
+	
+	stage("build")
+	      {
+		      parallel {
+		stage("maven build")
 	{
 		steps
 		{
 			sh  "${mvncmd} clean package"
 		}
 	}
-	}, task2: {
+	}
 	stage ("sonar")
 	{
 		steps{
@@ -33,9 +35,8 @@ pipeline
 			}
 		}
 	}
-	},
-	failFast: true
-	}
+	      }
+	
 	stage ("docker build")
 	{
 		steps{
