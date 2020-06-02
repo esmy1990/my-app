@@ -4,9 +4,7 @@ pipeline
 	environment {
   	def mvnhome = tool name: 'maven 3.6.3', type: 'maven'
 	def mvncmd = "${mvnhome}/bin/mvn"
-	
-	
-}
+	}
  stages
 {
 	stage("checkout") 
@@ -16,6 +14,7 @@ pipeline
 		git 'https://github.com/esmy1990/my-app'
 		}
 	}
+	parallel task1: {
 	stage("maven build")
 	{
 		steps
@@ -23,6 +22,17 @@ pipeline
 			sh  "${mvncmd} clean package"
 		}
 	}
+	parallel task2: {
+	stage ("sonar")
+	{
+		steps{
+		withSonarQubeEnv("sonar")
+			{
+				sh "${mvncmd} clean package sonar:sonar"
+			}
+		}
+	}	
+	failFast: true
 	stage ("docker build")
 	{
 		steps{
@@ -43,19 +53,6 @@ pipeline
 			sh "docker  push esmy1990/my-app:2.0.0"
 		}
 	}
-	stage ("sonar")
-	{
-		steps{
-		withSonarQubeEnv("sonar")
-			{
-				sh "${mvncmd} clean package sonar:sonar"
-			}
-		}
-	}
-	
-	stage('checkmarx') {
-		steps{
-			([$class: 'CxScanBuilder', comment: '', credentialsId: '', excludeFolders: '', excludeOpenSourceFolders: '', exclusionsSetting: 'global', failBuildOnNewResults: false, failBuildOnNewSeverity: 'HIGH', filterPattern: 'tar,war,\\sh', fullScanCycle: 10, includeOpenSourceFolders: '', osaArchiveIncludePatterns: '*.zip, *.war, *.ear, *.tgz', osaInstallBeforeScan: false, password: '{AQAAABAAAAAQGD9uya+LhOPmdsCY+U/BaMFm6Qr9Qnr1atvcNweWOUw=}', projectName: 'pipeline', sastEnabled: false, serverUrl: '', sourceEncoding: 'Provide Checkmarx server credentials to see source encodings list', username: '', vulnerabilityThresholdResult: 'FAILURE', waitForResultsEnabled: true])
-	}}	
+		
 }
 }
