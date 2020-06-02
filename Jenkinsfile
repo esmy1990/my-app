@@ -15,9 +15,9 @@ pipeline
 		}
 	}
 	
-	   parallel {
-		   stages
-		   {
+	stage("tests"){
+	parallel {
+	
        stage("maven build")
 	{
 		steps
@@ -25,7 +25,7 @@ pipeline
 			sh  "${mvncmd} clean package"
 		}
 	}
-    }, task2: {
+    
         stage ("sonar")
 	{
 		steps{
@@ -35,9 +35,8 @@ pipeline
 			}
 		}
 	}
-    },
-    failFast: true
-	   }
+    }
+   	   }
 
 	stage ("docker build")
 	{
