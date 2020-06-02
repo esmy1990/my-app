@@ -22,6 +22,7 @@ pipeline
 			sh  "${mvncmd} clean package"
 		}
 	}
+	},
 	parallel task2: {
 	stage ("sonar")
 	{
@@ -31,7 +32,8 @@ pipeline
 				sh "${mvncmd} clean package sonar:sonar"
 			}
 		}
-	}	
+	}
+	},
 	failFast: true
 	stage ("docker build")
 	{
