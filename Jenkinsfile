@@ -15,6 +15,7 @@ pipeline
 		}
 	}
 	parallel task1: {
+		stages{
 	stage("maven build")
 	{
 		steps
@@ -34,6 +35,7 @@ pipeline
 	}
 	},
 	failFast: true
+	}
 	stage ("docker build")
 	{
 		steps{
