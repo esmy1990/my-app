@@ -15,17 +15,16 @@ pipeline
 		}
 	}
 	
-	
-		      parallel {
-		stage("maven build")
+	   parallel task1: {
+       stage("maven build")
 	{
 		steps
 		{
 			sh  "${mvncmd} clean package"
 		}
 	}
-	
-	stage ("sonar")
+    }, task2: {
+        stage ("sonar")
 	{
 		steps{
 		withSonarQubeEnv("sonar")
@@ -34,8 +33,9 @@ pipeline
 			}
 		}
 	}
-	      }
-	
+    },
+    failFast: true
+
 	stage ("docker build")
 	{
 		steps{
