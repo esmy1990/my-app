@@ -15,8 +15,7 @@ pipeline
 		}
 	}
 	
-	stage("build")
-	      {
+	
 		      parallel {
 		stage("maven build")
 	{
@@ -25,7 +24,7 @@ pipeline
 			sh  "${mvncmd} clean package"
 		}
 	}
-	}
+	
 	stage ("sonar")
 	{
 		steps{
