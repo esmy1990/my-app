@@ -33,4 +33,4 @@ pipeline
 			sh "docker build -t esmy1990/${IMAGE} ."
 		}
 	}
-}
+}}
