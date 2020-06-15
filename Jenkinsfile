@@ -44,7 +44,7 @@ pipeline
 			sh "docker login -u esmy1990 -p ${dockerpwd}"
 			}
 		
-			sh "docker  push esmy1990/my-app:3.0.0"
+			sh "docker  push esmy1990/${IMAGE}"
 		}
 	}
 }}
